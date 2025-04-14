@@ -1,0 +1,58 @@
+{% extends './base.html' %}
+
+{% block title %}InvestNest | Explore{% endblock %}
+
+{% block content %}
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        
+        <!-- Left: Products List -->
+        <div class="lg:col-span-2">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">🚀 Explore Products</h2>
+            <div class="space-y-6">
+                {% for product in products %}
+                <a href="{% url 'product' product.pk %}" class="block relative">
+                    <div class="flex bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition overflow-hidden">
+                        <img src="{{ product.icon.url }}" alt="{{ product.title }}" class="w-20 h-20 object-contain p-3 bg-gray-100 border-r border-gray-200">
+                        
+                        <div class="flex flex-col justify-between p-4 flex-1">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800">{{ product.title }}</h3>
+                                <p class="text-gray-600 text-sm mt-1">{{ product.summary }}</p>
+                            </div>
+                            {% if product.is_featured %}
+                            <span class="mt-3 inline-block bg-yellow-400 text-white text-xs font-semibold px-3 py-1 rounded-full w-fit">🌟 Featured</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+                
+                {% empty %}
+                <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+                    <p class="text-gray-600">No products available at the moment. Check back later!</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Right: Blog Section -->
+        <div class="lg:col-span-1">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">📚 Latest Blogs</h2>
+            <div class="space-y-6">
+                <div class="p-5 bg-white border border-gray-200 rounded-lg shadow hover:shadow-md transition">
+                    <h3 class="text-lg font-semibold text-blue-600 mb-1">How to Launch a Product</h3>
+                    <p class="text-gray-600 text-sm">A complete guide to launching your product.</p>
+                </div>
+                <div class="p-5 bg-white border border-gray-200 rounded-lg shadow hover:shadow-md transition">
+                    <h3 class="text-lg font-semibold text-blue-600 mb-1">Marketing Strategies for Startups</h3>
+                    <p class="text-gray-600 text-sm">Explore the best marketing strategies for early-stage startups.</p>
+                </div>
+                <div class="p-5 bg-white border border-gray-200 rounded-lg shadow hover:shadow-md transition">
+                    <h3 class="text-lg font-semibold text-blue-600 mb-1">Product Hunt Success Stories</h3>
+                    <p class="text-gray-600 text-sm">Read success stories of startups featured on Product Hunt.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends './base.html' %}
+{% block title %}InvestNest | Upcoming Events{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto p-6">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">🚀 Upcoming Events</h2>
+
+    {% if events %}
+    <ul class="space-y-6">
+        {% for event in events %}
+        <a href="{% url 'event_detail' event.pk %}">
+        <li class="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300 border border-gray-100">
+            <h3 class="text-2xl font-semibold text-indigo-600 hover:underline">
+                {{ event.title }}
+            </h3>
+            <p class="text-gray-700 mt-2">{{ event.description }}</p>
+            <p class="mt-4 text-sm text-gray-500">
+                📅 <span class="font-medium">Date & Time:</span> {{ event.date_time|date:"F j, Y, g:i a" }}
+            </p>
+        </li>
+    </a>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div class="text-center text-gray-500 mt-8">
+        <p class="text-lg">No upcoming events. Stay tuned!</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+

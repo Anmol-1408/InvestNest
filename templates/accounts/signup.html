@@ -1,0 +1,90 @@
+{% extends '../products/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}InvestNest | SignUp{% endblock %}
+{% block content %}
+
+<head>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
+</head>
+
+<div class="flex justify-center items-center">
+    <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 bg-white rounded-xl shadow-xl overflow-hidden">
+
+        <!-- Sign-Up Form -->
+        <div class="p-8 flex flex-col justify-center">
+            <h2 class="text-3xl font-extrabold text-gray-800 mb-6">Sign Up for InvestNest</h2>
+
+            <form id="signup-form" method="post" class="space-y-6">
+                {% csrf_token %}
+                
+                <!-- Username -->
+                <div class="relative">
+                    <input type="text" id="username" name="username" placeholder=" " required
+                        class="peer block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                    <label for="username" class="absolute left-4 -top-3 text-sm text-gray-600 transition-all transform peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:text-blue-600 peer-focus:text-xs">Username</label>
+                </div>
+
+                <!-- Email -->
+                <div class="relative">
+                    <input type="email" id="email" name="email" placeholder=" " required
+                        class="peer block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                    <label for="email" class="absolute left-4 -top-3 text-sm text-gray-600 transition-all transform peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:text-blue-600 peer-focus:text-xs">Email</label>
+                </div>
+
+                <!-- Password -->
+                <div class="relative">
+                    <input type="password" id="password" name="password" placeholder=" " required
+                        class="peer block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                    <label for="password" class="absolute left-4 -top-3 text-sm text-gray-600 transition-all transform peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:text-blue-600 peer-focus:text-xs">Password</label>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="relative">
+                    <input type="password" id="confirm-password" name="confirm_password" placeholder=" " required
+                        class="peer block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 focus:outline-none">
+                    <label for="confirm-password" class="absolute left-4 -top-3 text-sm text-gray-600 transition-all transform peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-0 peer-focus:text-blue-600 peer-focus:text-xs">Confirm Password</label>
+                </div>
+
+                <!-- Actions -->
+                <div>
+                    <button type="submit" id="signup-btn"
+                            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
+                        Sign Up
+                    </button>
+                </div>
+
+                <!-- Error message area -->
+                <div id="error-message" class="text-red-500 mt-2 hidden"></div>
+
+                <!-- Extras -->
+                <div class="text-sm text-gray-600 flex flex-col sm:flex-row justify-between items-center mt-4">
+                    <p>Already have an account? <a href="{% url 'login' %}" class="text-blue-600 hover:underline">Login</a></p>
+                </div>
+
+                {% if form.errors %}
+                    <div class="text-red-500 mt-2">
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </form>
+
+        </div>
+
+        <!-- Spline 3D Viewer -->
+        <div class="bg-gray-50 p-4 flex items-center justify-center">
+            <spline-viewer url="https://prod.spline.design/5o6mwGdVodkt6jkl/scene.splinecode"
+                           class="w-full h-[400px] md:h-[500px] rounded-md shadow-inner"></spline-viewer>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

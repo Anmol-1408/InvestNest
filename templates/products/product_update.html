@@ -1,0 +1,121 @@
+{% extends './base.html' %}
+
+{% block title %}InvestNest | Update{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-6 py-12 bg-gray-50">
+    <div class="bg-white shadow-xl rounded-lg p-8">
+        <h1 class="text-3xl font-semibold text-gray-900 mb-6">Update Product</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Title Field -->
+            <div class="mb-6">
+                <label for="{{ form.title.id_for_label }}" class="block text-lg font-medium text-gray-700">Title</label>
+                <div class="mt-2">
+                    <input type="text" name="title" id="id_title" value="{{ form.title.value }}" class="w-full p-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">
+                </div>
+            </div>
+
+            <!-- Description Field -->
+            <div class="mb-6">
+                <label for="{{ form.description.id_for_label }}" class="block text-lg font-medium text-gray-700">Description</label>
+                <div class="mt-2">
+                    <textarea name="description" id="id_description" rows="4" class="w-full p-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">{{ form.description.value }}</textarea>
+                </div>
+            </div>
+
+            <!-- Features Field -->
+            <div class="mb-6">
+                <label for="{{ form.features.id_for_label }}" class="block text-lg font-medium text-gray-700">Features</label>
+                <div class="mt-2">
+                    <textarea name="features" id="id_features" rows="4" class="w-full p-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">{{ form.features.value }}</textarea>
+                </div>
+            </div>
+
+            <!-- Financial Projection Field -->
+            <div class="mb-6">
+                <label for="{{ form.financial_projection.id_for_label }}" class="block text-lg font-medium text-gray-700">Financial Projection</label>
+                <div class="mt-2">
+                    <input type="text" name="financial_projection" id="id_financial_projection" value="{{ form.financial_projection.value }}" class="w-full p-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">
+                </div>
+            </div>
+
+            <!-- Icon Field -->
+            <div class="mb-6">
+                <label for="{{ form.icon.id_for_label }}" class="block text-lg font-medium text-gray-700">Icon</label>
+                <div class="mt-2">
+                    <input type="file" name="icon" id="id_icon" class="w-full p-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">
+                </div>
+            </div>
+
+            <!-- Screenshot Field -->
+            <div class="mb-6">
+                <label for="{{ form.screenshot.id_for_label }}" class="block text-lg font-medium text-gray-700">Screenshot</label>
+                <div class="mt-2">
+                    <input type="file" name="screenshot" id="id_screenshot" class="w-full p-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">
+                </div>
+            </div>
+
+            <!-- Link Field -->
+            <div class="mb-6">
+                <label for="{{ form.link.id_for_label }}" class="block text-lg font-medium text-gray-700">Link</label>
+                <div class="mt-2">
+                    <input type="url" name="link" id="id_link" value="{{ form.link.value }}" class="w-full p-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">
+                </div>
+            </div>
+
+            <!-- Publication Date Field -->
+            <div class="mb-6">
+                <label for="{{ form.pub_date.id_for_label }}" class="block text-lg font-medium text-gray-700">Publication Date</label>
+                <div class="mt-2">
+                    <input type="date" name="pub_date" id="id_pub_date" value="{{ form.pub_date.value }}" class="w-full p-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">
+                </div>
+            </div>
+
+            <!-- Tags Field -->
+            <div class="mb-6">
+                <label for="{{ form.tags.id_for_label }}" class="block text-lg font-medium text-gray-700">Tags</label>
+                <div class="mt-2">
+                    <input type="text" name="tags" id="id_tags" value="{{ form.tags.value }}" class="w-full p-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">
+                </div>
+            </div>
+
+            <!-- Category Field -->
+            <div class="mb-6">
+                <label for="{{ form.category.id_for_label }}" class="block text-lg font-medium text-gray-700">Category</label>
+                <div class="mt-2">
+                    <input type="text" name="category" id="id_category" value="{{ form.category.value }}" class="w-full p-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">
+                </div>
+            </div>
+
+            <!-- Published Field -->
+            <div class="mb-6">
+                <label for="{{ form.is_published.id_for_label }}" class="block text-lg font-medium text-gray-700">Published</label>
+                <div class="mt-2">
+                    {{ form.is_published }}
+                </div>
+            </div>
+
+            <!-- Featured Field -->
+            <div class="mb-6">
+                <label for="{{ form.is_featured.id_for_label }}" class="block text-lg font-medium text-gray-700">Featured</label>
+                <div class="mt-2">
+                    {{ form.is_featured }}
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-between items-center mt-6">
+                <button type="submit" class="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300">
+                    Update
+                </button>
+                
+                <!-- Cancel Link -->
+                <a href="{% url 'explore' %}" class="text-sm text-gray-600 hover:text-gray-800">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create New product</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'products/css/styles.css' %}">
+</head>
+<body>
+
+<div class="form-container">
+	<h1>Create New Investment</h1>
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="form-group">
+			<label for="{{ form.investor.id_for_label }}">Investor</label>
+			{{ form.investor }}
+		</div>
+		<div class="form-group">
+			<label for="{{ form.product.id_for_label }}">product</label>
+			{{ form.product }}
+		</div>
+		<div class="form-group">
+			<label for="{{ form.amount.id_for_label }}">Amount</label>
+			{{ form.amount }}
+		</div>
+		<div class="form-group">
+			<label for="{{ form.equity.id_for_label }}">Equity</label>
+			{{ form.equity }}
+		</div>
+		<div class="form-group">
+			<label for="{{ form.description.id_for_label }}">Description</label>
+			{{ form.description }}
+		</div>
+		<div class="form-group">
+			<label for="{{ for.message.id_for_label }}">Message</label>
+			{{ form.message }}
+		</div>
+		<div class="form-group">
+	
+		<button type="submit">Save</button>
+	</form>
+	<a href="{% url 'explore' %}" class="cancel-link">Cancel</a>
+</div>
+
+</body>
+</html>
