@@ -10,144 +10,157 @@
 
 <body>
 	{% block content %}
-	<div class="mb-16">
-		<div class="bg-gray-100">
-			<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-				<div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-					<div>
-						<p
-							class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-							Brand new
-						</p>
-					</div>
-					<h2
-						class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
-						<span class="relative inline-block">
-							<svg viewBox="0 0 52 24" fill="currentColor"
-								class="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-gray-400 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block">
-								<defs>
-									<pattern id="dc223fcc-6d72-4ebc-b4ef-abe121034d6e" x="0" y="0" width=".135"
-										height=".30">
-										<circle cx="1" cy="1" r=".7"></circle>
-									</pattern>
-								</defs>
-								<rect fill="url(#dc223fcc-6d72-4ebc-b4ef-abe121034d6e)" width="52" height="24"></rect>
-							</svg>
-							<span class="relative">The</span>
-						</span>
-						quick, brown fox jumps over a lazy dog
+
+	<!-- Hero Section -->
+	<section>
+		<div class="max-w-screen-xl px-4 py-16 mx-auto text-center">
+			<h1 class="mb-4 text-4xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+				Launch. Discover. Invest.
+			</h1>
+			<p class="mb-6 text-lg text-gray-600 sm:px-16 xl:px-48">
+				InvestNest is the platform where developers showcase innovative products, and investors discover the next big thing. Whether you're building or backing the future — we're your launchpad.
+			</p>
+			<div class="flex flex-col items-center justify-center gap-4 sm:flex-row sm:justify-center">
+				<a href="/accounts/login" class="px-6 py-3 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">
+					Get Started
+				</a>
+				<a href="{% url 'explore' %}" class="px-6 py-3 text-indigo-600 border border-indigo-600 rounded-lg hover:bg-indigo-50">
+					Explore Projects
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Features Section -->
+	<section class="px-4 py-16 mx-auto max-w-screen-xl">
+		<div class="grid gap-8 md:grid-cols-3">
+			<div class="text-center">
+				<div class="inline-flex items-center justify-center w-16 h-16 mb-4 text-white bg-indigo-500 rounded-full">
+					<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+					</svg>
+				</div>
+				<h3 class="mb-2 text-xl font-semibold">Showcase Products</h3>
+				<p class="text-gray-600">Developers and Investors can showcase their apps, websites, and startups to gain attention and traction.</p>
+			</div>
+
+			<div class="text-center">
+				<div class="inline-flex items-center justify-center w-16 h-16 mb-4 text-white bg-indigo-500 rounded-full">
+					<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+					</svg>
+				</div>
+				<h3 class="mb-2 text-xl font-semibold">Invest in Ideas</h3>
+				<p class="text-gray-600">Only verified investors can invest directly through our platform with transparent processes and secure transactions.</p>
+			</div>
+
+			<div class="text-center">
+				<div class="inline-flex items-center justify-center w-16 h-16 mb-4 text-white bg-indigo-500 rounded-full">
+					<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 14h.01M16 10h.01M21 21H3V3h18v18z" />
+					</svg>
+				</div>
+				<h3 class="mb-2 text-xl font-semibold">Community & Support</h3>
+				<p class="text-gray-600">Engage with a vibrant community, get feedback, schedule meetings, and promote your project to the right audience.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Extended Features Section -->
+	<section class="py-20">
+		<div class="max-w-screen-xl px-6 mx-auto">
+			<div class="mb-12 text-center">
+				<h2 class="text-3xl font-bold text-gray-800 sm:text-4xl">
+					Why Choose InvestNest?
+				</h2>
+				<p class="mt-4 text-lg text-gray-600">
+					We’re more than just a platform — we’re your launch partner.
+				</p>
+			</div>
+
+			<div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+				<div>
+					<h4 class="text-xl font-semibold text-indigo-700 mb-2">Advertise Your Product</h4>
+					<p class="text-gray-700">Gain exposure by promoting your product to our growing investor network.</p>
+				</div>
+				<div>
+					<h4 class="text-xl font-semibold text-indigo-700 mb-2">Schedule Meetings</h4>
+					<p class="text-gray-700">Connect and collaborate directly with interested investors or developers.</p>
+				</div>
+				<div>
+					<h4 class="text-xl font-semibold text-indigo-700 mb-2">Manage Your Profile</h4>
+					<p class="text-gray-700">Showcase your full portfolio, highlight past investments, and build credibility.</p>
+				</div>
+				<div>
+					<h4 class="text-xl font-semibold text-indigo-700 mb-2">Secure Platform</h4>
+					<p class="text-gray-700">All transactions and profiles are protected with the latest security practices.</p>
+				</div>
+				<div>
+					<h4 class="text-xl font-semibold text-indigo-700 mb-2">Community First</h4>
+					<p class="text-gray-700">Engage in forums, ask questions, share insights, and grow together.</p>
+				</div>
+				<div>
+					<h4 class="text-xl font-semibold text-indigo-700 mb-2">Verified Investors</h4>
+					<p class="text-gray-700">We ensure all investors on the platform are genuine and verified for legitimacy.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+		<!-- Testimonials Section -->
+		<section class="py-20">
+			<div class="max-w-screen-xl mx-auto px-6">
+				<div class="text-center mb-12">
+					<h2 class="text-3xl font-bold text-gray-800 sm:text-4xl">
+						What Our Users Say
 					</h2>
-					<p class="text-base text-gray-700 md:text-lg">
-						Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque rem
-						aperiam, eaque ipsa quae.
-					</p>
+					<p class="mt-4 text-gray-600 text-lg">Trusted by developers and investors around the globe.</p>
 				</div>
-				<div class="flex items-center sm:justify-center">
-					<a href="/accounts/login"
-						class="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none">
-						Get started
-					</a>
-					<a href={% url 'explore' %} aria-label=""
-						class="inline-flex items-center font-semibold text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-700">Explore</a>
+	
+				<div class="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+					<div class="bg-gray-50 p-6 rounded-lg shadow-md">
+						<p class="text-gray-700 mb-4">"InvestNest helped me connect with investors who believed in my idea. We raised funding within 3 months!"</p>
+						<h4 class="font-semibold text-indigo-700">— Arjun Mehta, Founder of CodeNest</h4>
+					</div>
+					<div class="bg-gray-50 p-6 rounded-lg shadow-md">
+						<p class="text-gray-700 mb-4">"The platform is simple and powerful. I found a promising startup and closed a deal faster than ever."</p>
+						<h4 class="font-semibold text-indigo-700">— Priya Sharma, Angel Investor</h4>
+					</div>
+					<div class="bg-gray-50 p-6 rounded-lg shadow-md">
+						<p class="text-gray-700 mb-4">"As a product developer, the visibility and support I got here are unmatched. It's a must-use platform!"</p>
+						<h4 class="font-semibold text-indigo-700">— Devansh K., Full Stack Developer</h4>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="relative px-4 sm:px-0">
-			<div class="absolute inset-0 bg-gray-100 h-1/2"></div>
-			<div
-				class="relative grid mx-auto overflow-hidden bg-white divide-y rounded shadow sm:divide-y-0 sm:divide-x sm:max-w-screen-sm sm:grid-cols-3 lg:max-w-screen-md">
-				<div class="inline-block p-8 text-center">
-					<div class="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-full bg-indigo-50">
-						<svg class="w-10 h-10 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-							<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"
-								points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-						</svg>
-					</div>
-					<p class="font-bold tracking-wide text-gray-800">Make it better</p>
-				</div>
-				<div class="inline-block p-8 text-center">
-					<div class="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-full bg-indigo-50">
-						<svg class="w-10 h-10 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-							<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"
-								points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-						</svg>
-					</div>
-					<p class="font-bold tracking-wide text-gray-800">Do it faster</p>
-				</div>
-				<div class="inline-block p-8 text-center">
-					<div class="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-full bg-indigo-50">
-						<svg class="w-10 h-10 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-							<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"
-								points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-						</svg>
-					</div>
-					<p class="font-bold tracking-wide text-gray-800">Working harder</p>
-				</div>
+		</section>
+	
+		<!-- Call to Action Banner -->
+		<section class="bg-indigo-600 py-16 text-white text-center">
+			<div class="max-w-screen-md mx-auto px-6">
+				<h2 class="text-3xl font-bold mb-4">Ready to take your idea to the next level?</h2>
+				<p class="mb-6 text-lg">Join a growing network of innovators and investors today.</p>
+				<a href="/accounts/signup" class="px-6 py-3 bg-white text-indigo-600 font-semibold rounded-lg hover:bg-gray-100">
+					Join Now
+				</a>
 			</div>
-		</div>
-	</div>
+		</section>
+	
+		<!-- Newsletter Signup -->
+		<section class="py-20">
+			<div class="max-w-screen-sm mx-auto text-center px-6">
+				<h2 class="text-2xl font-bold text-gray-800 mb-4">Stay in the Loop</h2>
+				<p class="mb-6 text-gray-600">Subscribe to get the latest updates, top projects, and investment tips right to your inbox.</p>
+				<form method="POST" action="#">
+					{% csrf_token %}
+					<div class="flex flex-col sm:flex-row gap-4 justify-center">
+						<input type="email" name="email" placeholder="Enter your email" required class="w-full sm:w-auto px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+						<button type="submit" class="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700">Subscribe</button>
+					</div>
+				</form>
+			</div>
+		</section>
+	
 
-
-
-	<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-		<div class="max-w-xl mb-10 sm:mx-auto">
-			<h2
-				class="font-sans text-3xl font-bold leading-tight tracking-tight text-gray-900 sm:text-4xl sm:text-center">
-				The quick, brown fox jumps over and over
-				<span class="inline-block text-deep-purple-accent-400">a lazy dog</span>
-			</h2>
-		</div>
-		<div class="grid gap-12 row-gap-8 lg:grid-cols-3">
-			<div class="flex">
-				<div class="mr-4">
-					<div class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50">
-						<svg class="w-8 h-8 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-							<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"
-								points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-						</svg>
-					</div>
-				</div>
-				<div>
-					<h6 class="mb-2 font-semibold leading-5">Category</h6>
-					<p class="text-sm text-gray-900">
-						Sed ut perspiciatis unde omnis iste natus error sit voluptatem, isa unde est nast laudantium.
-					</p>
-				</div>
-			</div>
-			<div class="flex">
-				<div class="mr-4">
-					<div class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50">
-						<svg class="w-8 h-8 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-							<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"
-								points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-						</svg>
-					</div>
-				</div>
-				<div>
-					<h6 class="mb-2 font-semibold leading-5">Weather</h6>
-					<p class="text-sm text-gray-900">
-						Webtwo ipsum orkut reddit meebo skype vimeo jajah spock empressr zimbra, mobly napster.
-					</p>
-				</div>
-			</div>
-			<div class="flex">
-				<div class="mr-4">
-					<div class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50">
-						<svg class="w-8 h-8 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
-							<polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"
-								points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
-						</svg>
-					</div>
-				</div>
-				<div>
-					<h6 class="mb-2 font-semibold leading-5">Health</h6>
-					<p class="text-sm text-gray-900">
-						Lookout flogging bilge rat main sheet bilge water nipper fluke to go on account heave down clap.
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
 	{% endblock %}
 </body>
 
