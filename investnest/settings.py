@@ -67,6 +67,9 @@ INSTALLED_APPS = [
     'widget_tweaks',
 ]
 
+SITE_ID = 1
+
+
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = ['127.0.0.1', 'localhost']
 NPM_BIN_PATH = r"C:\Users\hp\AppData\Roaming\npm\npm.cmd"  # Adjust this path if necessary
@@ -171,7 +174,6 @@ STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
-    
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
