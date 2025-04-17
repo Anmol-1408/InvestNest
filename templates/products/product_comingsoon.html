@@ -29,6 +29,7 @@
                 <div class="space-y-4">
                     {% for product in products %}
                     {% if not product.is_published %}
+                    <a href="{% url 'product' product.pk %}" class="block relative">
                     <div class="flex items-start gap-4 bg-gray-50 p-4 rounded border border-gray-200 hover:shadow transition">
                         <img src="{{ product.icon.url }}" alt="{{ product.title }}" class="w-16 h-16 object-cover rounded-md">
                         <div class="flex-1">
@@ -39,6 +40,8 @@
                             {% endif %}
                         </div>
                     </div>
+                    </a>
+                    
                     {% endif %}
                     {% endfor %}
                 </div>

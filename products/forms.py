@@ -15,8 +15,9 @@ class ProductForm(forms.ModelForm):
 		widgets = {
 		    'pub_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
 		    'description': forms.Textarea(attrs={'rows': 4}),
-		    'features': forms.Textarea(attrs={'rows': 2}),
-		    'financial_projection': forms.Textarea(attrs={'rows': 2}),
+		    'features': forms.Textarea(attrs={'rows': 2,'placeholder': 'Comma-separated Features'}),
+		    'financial_projection': forms.Textarea(attrs={'rows': 2, 'placeholder': 'Your Valuation'}),
+		    'link': forms.TextInput(attrs={'placeholder': 'Website link'}),
 		    'tags':
 		    forms.TextInput(attrs={'placeholder': 'Comma-separated tags'}),
 		    'category': forms.TextInput(attrs={'placeholder': 'Category'}),

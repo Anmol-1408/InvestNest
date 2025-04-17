@@ -27,6 +27,12 @@ class Product(models.Model):
 
     def summary(self):
         return self.description[:100] + "..."  # Fixed attribute name
+    
+    def tag_list(self):
+        return [tag.strip() for tag in self.tags.split(',') if tag.strip()]
+    
+    def features_list(self):
+        return [features.strip() for features in self.features.split(',') if features.strip()]
 
     def pub_date_pretty(self):
         return self.pub_date.strftime('%b %e %Y')
