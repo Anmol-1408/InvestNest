@@ -13,7 +13,7 @@ class CustomUserCreationForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['profile_pic', 'firstname', 'lastname', 'bio', 'website', 'email', 'github', 'phone', 'address', 'city', 'state', 'zipcode', 'country', 'twitter', 'linkedin', 'facebook', 'instagram', 'youtube']
+        fields = ['profile_pic', 'firstname', 'lastname', 'bio', 'is_investor', 'website', 'email', 'github', 'phone', 'address', 'city', 'state', 'zipcode', 'country', 'twitter', 'linkedin', 'facebook', 'instagram', 'youtube']
 
 
 

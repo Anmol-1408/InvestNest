@@ -48,6 +48,7 @@ CSRF_TRUSTED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -113,19 +114,19 @@ DATABASES = {
     }
 }
 
-## DATABASE_URL = config("DATABASE_URL", cast = str)
-# CONN_MAX_AGE = config("CONN_MAX_AGE", cast=int, default=300)
-# DATABASE_URL = config("DATABASE_URL", default=None)
+# DATABASE_URL = config("DATABASE_URL", cast = str)
+CONN_MAX_AGE = config("CONN_MAX_AGE", cast=int, default=300)
+DATABASE_URL = config("DATABASE_URL", default=None)
 
-# if DATABASE_URL is not None:
-#     import dj_database_url
-#     DATABASES = {
-#         "default": dj_database_url.config(
-#             default=DATABASE_URL,
-#             conn_max_age=CONN_MAX_AGE,
-#             conn_health_checks=True,
-#         )
-#     }
+if DATABASE_URL is not None:
+    import dj_database_url
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=DATABASE_URL,
+            conn_max_age=CONN_MAX_AGE,
+            conn_health_checks=True,
+        )
+    }
 
 
 # Password validation
@@ -183,3 +184,24 @@ ZOOM_REDIRECT_URI = config("ZOOM_REDIRECT_URI")
 # Client_Secret = '8j5nblIp0Cyphn9hf4k0QHQMrRCXIgLw'
 # Secret_Token = '3mFGVuAsQQO-tm5WuNV8Ww'
 # Verification_Token = 'cRZwX_GtQHmePG6a839ibw'  # Replace the Verification Token with Secret Token to verify event notifications from Zoom.
+
+JAZZMIN_SETTINGS = {
+    "site_title": "InvestNest Admin",
+    "site_header": "InvestNest Admin",
+    "site_brand": "InvestNest",
+    "welcome_sign": "Welcome to InvestNest Admin Panel",
+    "copyright": "InvestNest",
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+    "order_with_respect_to": ["auth", "products", "profiles"],  # reorder apps
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "yourapp.Profile": "fas fa-id-badge",
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-angle-right",
+}

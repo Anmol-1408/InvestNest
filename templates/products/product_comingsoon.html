@@ -1,70 +1,72 @@
 {% extends './base.html' %}
 
-
 {% block title %}InvestNest | Coming Soon{% endblock %}
 
 {% block content %}
-<h1>Coming Soon</h1>
+<section class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto space-y-12">
 
+        <div class="text-center">
+            <h1 class="text-4xl font-bold text-gray-900">🚀 Coming Soon</h1>
+            <p class="mt-2 text-lg text-gray-600">Exciting things are on the way.</p>
+        </div>
 
-<section class="content">
-    <div class="card product-card">
-        {% if request.user.is_authenticated %}
-        <button class="Btn">
-            
-            <div class="sign">+</div>
-            <a href="{% url 'product_create' %}" class="text">New product</a>
-            
-        
-          </button>
-        {% endif %}
-        
-        <h2>Launching Soon...</h2>
-        {% if products %}
-        <div class="product-list" id="product-list">
-            {% for product in products %}
-            {% if not product.is_published %}
-            <div class="product-item">
-                <img src="{{ product.icon.url }}" alt="{{ product.title }}">
-                <div>
-                    <h2>{{ product.title }}</h2>
-                    <p>{{ product.summary }}</p>
-                    {% if product.is_featured %}
-                    <div class="featured-product-ad">Featured</div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <!-- Product Card -->
+            <div class="bg-white shadow-lg rounded-lg p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-semibold text-gray-800">Upcoming Products</h2>
+
+                    {% if request.user.is_authenticated %}
+                    <a href="{% url 'product_create' %}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-700 transition">
+                        <span class="text-xl mr-2">+</span> New Product
+                    </a>
                     {% endif %}
                 </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-        {% else %}
-        <p>No products are coming soon at the moment.</p>
-        {% endif %}
-    </div>
 
-    <div class="card blog-card">
-        <h2>Latest Blogs</h2>
-        <div class="blog-list">
-            <div class="blog-item">
-                <h3>How to Launch a Product</h3>
-                <p>A complete guide to launching your product.</p>
+                {% if products %}
+                <div class="space-y-4">
+                    {% for product in products %}
+                    {% if not product.is_published %}
+                    <div class="flex items-start gap-4 bg-gray-50 p-4 rounded border border-gray-200 hover:shadow transition">
+                        <img src="{{ product.icon.url }}" alt="{{ product.title }}" class="w-16 h-16 object-cover rounded-md">
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800">{{ product.title }}</h3>
+                            <p class="text-sm text-gray-600">{{ product.summary }}</p>
+                            {% if product.is_featured %}
+                            <span class="inline-block mt-2 px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">🌟 Featured</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-gray-500">No products are coming soon at the moment.</p>
+                {% endif %}
             </div>
-            <div class="blog-item">
-                <h3>Marketing Strategies for Startups</h3>
-                <p>Explore the best marketing strategies for early-stage startups.</p>
+
+            <!-- Blog Card -->
+            <div class="bg-white shadow-lg rounded-lg p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Latest Blogs</h2>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-indigo-500 pl-4">
+                        <h3 class="text-lg font-semibold text-gray-700">How to Launch a Product</h3>
+                        <p class="text-sm text-gray-600">A complete guide to launching your product.</p>
+                    </div>
+                    <div class="border-l-4 border-indigo-500 pl-4">
+                        <h3 class="text-lg font-semibold text-gray-700">Marketing Strategies for Startups</h3>
+                        <p class="text-sm text-gray-600">Explore the best marketing strategies for early-stage startups.</p>
+                    </div>
+                    <div class="border-l-4 border-indigo-500 pl-4">
+                        <h3 class="text-lg font-semibold text-gray-700">Product Hunt Success Stories</h3>
+                        <p class="text-sm text-gray-600">Read success stories of startups featured on Product Hunt.</p>
+                    </div>
+                </div>
             </div>
-            <div class="blog-item">
-                <h3>Product Hunt Success Stories</h3>
-                <p>Read success stories of startups featured on Product Hunt.</p>
-            </div>
+
         </div>
     </div>
 </section>
-
-
-
 {% endblock %}
-
-
-
-

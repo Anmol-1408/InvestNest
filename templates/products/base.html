@@ -52,10 +52,11 @@
                     <li><a href="{% url 'community_discuss' %}" class="nav-link">Community</a></li>
                     <li>
                         {% if request.user.is_authenticated %}
-                        {% if user.profile.profile_picture %}
+                        
+                        {% if user.profile.profile_pic %}
                         <li class="relative group">
                             <a href="#" class="nav-link inline-flex items-center space-x-1">
-                                <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture"
+                                <img src="{{ user.profile.profile_pic.url }}" alt="Profile Picture"
                             class="w-10 h-10 rounded-full border-2 border-blue-500 shadow-md">
                                 <svg class="w-4 h-4 text-gray-500 group-hover:text-indigo-500 transition" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.08 1.04l-4.25 4.25a.75.75 0 01-1.08 0L5.25 8.27a.75.75 0 01-.02-1.06z" />

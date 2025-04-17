@@ -1,92 +1,90 @@
 {% extends './base.html' %}
+{% load widget_tweaks %}
 
-
-{% block title %}InvestNest | Explore{% endblock %}
+{% block title %}InvestNest | New Product{% endblock %}
 
 {% block content %}
 
-<div class="form-container">
-    <h1>Create New Product</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="{{ form.title.id_for_label }}">Title</label>
-            {{ form.title }}
-        </div>
-        <div class="form-group">
-            <label for="{{ form.description.id_for_label }}">Description</label>
-            {{ form.description }}
-        </div>
-        <div class="form-group">
-            <label for="{{ form.features.id_for_label }}">Features</label>
-            {{ form.features }}
-        </div>
-        <div class="form-group">
-            <label for="{{ form.financial_projection.id_for_label }}">Financial Projection</label>
-            {{ form.financial_projection }} <!-- Fix typo here -->
-        </div>
-        <div class="form-group">
-            <div class="input-container">
-                <div class="folder">
-                    <div class="front-side">
-                        <div class="tip"></div>
-                        <div class="cover"></div>
-                    </div>
-                    <div class="back-side cover"></div>
-                </div>
-                <label for="{{ form.icon.id_for_label }}" class="custom-file-upload">
-                    <!-- <label for="{{ form.icon.id_for_label }}">Icon</label> -->
-                    {{ form.icon }}
-                    Icon
-                </label>
+<section class="max-w-4xl mx-auto px-4 py-12">
+    <div class="bg-white shadow-md rounded-lg p-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">Create New Product</h1>
+
+        <form method="post" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %}
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.title.id_for_label }}">Title</label>
+                {{ form.title|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
             </div>
-        </div>
-        <div class="form-group">
-            <div class="form-group">
-                <div class="input-container">
-                    <div class="folder">
-                        <div class="front-side">
-                            <div class="tip"></div>
-                            <div class="cover"></div>
-                        </div>
-                        <div class="back-side cover"></div>
-                    </div>
-                    <label for="{{ form.screenshot.id_for_label }}" class="custom-file-upload">
-                        <!-- <label for="{{ form.icon.id_for_label }}">Icon</label> -->
-                        {{ form.screenshot }}
-                        Screenshot
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.description.id_for_label }}">Description</label>
+                {{ form.description|add_class:"mt-1 block w-full h-24 px-3 py-2 border border-gray-300 rounded-md shadow-sm resize-y focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.features.id_for_label }}">Features</label>
+                {{ form.features|add_class:"mt-1 block w-full h-24 px-3 py-2 border border-gray-300 rounded-md shadow-sm resize-y focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.financial_projection.id_for_label }}">Financial Projection</label>
+                {{ form.financial_projection|add_class:"mt-1 block w-full h-24 px-3 py-2 border border-gray-300 rounded-md shadow-sm resize-y focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.icon.id_for_label }}">Product Icon</label>
+                {{ form.icon|add_class:"mt-1 block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" }}
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.screenshot.id_for_label }}">Screenshot</label>
+                {{ form.screenshot|add_class:"mt-1 block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" }}
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.link.id_for_label }}">Link</label>
+                {{ form.link|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.pub_date.id_for_label }}">Publication Date</label>
+                {{ form.pub_date|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.tags.id_for_label }}">Tags</label>
+                {{ form.tags|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700" for="{{ form.category.id_for_label }}">Category</label>
+                {{ form.category|add_class:"mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" }}
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div>
+                    <label class="inline-flex items-center text-sm text-gray-700">
+                        {{ form.is_published }}
+                        <span class="ml-2">Published</span>
+                    </label>
+                </div>
+                <div>
+                    <label class="inline-flex items-center text-sm text-gray-700">
+                        {{ form.is_featured }}
+                        <span class="ml-2">Featured</span>
                     </label>
                 </div>
             </div>
 
-        </div>
-        <div class="form-group">
-            <label for="{{ form.link.id_for_label }}">Link</label>
-            {{ form.link }}
-        </div>
-        <div class="form-group">
-            <label for="{{ form.pub_date.id_for_label }}">Publication Date</label>
-            {{ form.pub_date }}
-        </div>
-        <div class="form-group">
-            <label for="{{ form.tags.id_for_label }}">Tags</label>
-            {{ form.tags }}
-        </div>
-        <div class="form-group">
-            <label for="{{ form.category.id_for_label }}">Category</label>
-            {{ form.category }}
-        </div>
-        <div class="form-group">
-            <label for="{{ form.is_published.id_for_label }}">Published</label>
-            {{ form.is_published }}
-        </div>
-        <div class="form-group">
-            <label for="{{ form.is_featured.id_for_label }}">Featured</label>
-            {{ form.is_featured }}
-        </div>
-        <button type="submit">Save</button>
-    </form>
-    <a href="{% url 'explore' %}" class="cancel-link">Cancel</a>
-</div>
+            <div class="flex items-center justify-between mt-6">
+                <button type="submit" class="inline-flex items-center justify-center px-6 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Save Product
+                </button>
+                <a href="{% url 'explore' %}" class="text-sm text-gray-500 hover:text-indigo-600 underline">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
 
 {% endblock %}

@@ -3,10 +3,11 @@
 {% block title %}InvestNest | Your Profile{% endblock %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto p-8 bg-white shadow-xl rounded-xl mt-10">
-    <div class="flex items-center space-x-6 mb-6">
-        {% if request.user.profile.profile_picture %}
-            <img src="{{ request.user.profile.profile_picture.url }}" alt="Profile Picture"
+<div class="flex item-center justify-center h-auto">
+<div class="max-w-5xl mx-auto p-8 shadow-xl rounded-xl mt-8 mb-4 bg-white">
+    <div class="flex items-center space-x-6 mb-8">
+        {% if request.user.profile.profile_pic %}
+            <img src="{{ request.user.profile.profile_pic.url }}" alt="Profile Picture"
                  class="w-24 h-24 rounded-full border-4 border-blue-500 object-cover shadow-md">
         {% else %}
             <div class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center text-gray-500 text-xl font-semibold">
@@ -15,7 +16,7 @@
         {% endif %}
         <div>
             <h2 class="text-3xl font-bold text-gray-800">Hello, {{ user.username }} 👋</h2>
-            <p class="text-gray-500">Here’s your current profile information</p>
+            <p class="text-gray-500">Here's your complete profile overview</p>
         </div>
         <div class="mt-8 text-center">
             <a href="{% url 'profile_setup' %}" class="edit-button">
@@ -27,32 +28,52 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-            <h4 class="text-sm text-gray-500 uppercase mb-1">Email</h4>
-            <p class="text-lg font-medium text-gray-800">{{ user.profile.email }}</p>
+        <div><h4 class="label">First Name</h4><p class="value">{{ user.profile.firstname }}</p></div>
+        <div><h4 class="label">Last Name</h4><p class="value">{{ user.profile.lastname }}</p></div>
+        <div><h4 class="label">Bio</h4><p class="value">{{ user.profile.bio }}</p></div>
+        <div><h4 class="label">Investor</h4><p class="value">{{ user.profile.is_investor|yesno:"Yes,No" }}</p></div>
+        <div><h4 class="label">Email</h4><p class="value">{{ user.profile.email }}</p></div>
+        <div><h4 class="label">Phone</h4><p class="value">{{ user.profile.phone }}</p></div>
+        <div><h4 class="label">Website</h4>
+            <a href="{{ user.profile.website }}" class="value text-blue-500 hover:underline" target="_blank">{{ user.profile.website }}</a>
         </div>
-
-        <div>
-            <h4 class="text-sm text-gray-500 uppercase mb-1">Phone</h4>
-            <p class="text-lg font-medium text-gray-800">{{ user.profile.phone }}</p>
+        <div><h4 class="label">GitHub</h4>
+            <a href="{{ user.profile.github }}" class="value text-blue-500 hover:underline" target="_blank">{{ user.profile.github }}</a>
         </div>
+        <div><h4 class="label">Address</h4><p class="value">{{ user.profile.address }}</p></div>
+        <div><h4 class="label">City</h4><p class="value">{{ user.profile.city }}</p></div>
+        <div><h4 class="label">State</h4><p class="value">{{ user.profile.state }}</p></div>
+        <div><h4 class="label">Zip Code</h4><p class="value">{{ user.profile.zipcode }}</p></div>
+        <div><h4 class="label">Country</h4><p class="value">{{ user.profile.country }}</p></div>
 
-        <div>
-            <h4 class="text-sm text-gray-500 uppercase mb-1">Address</h4>
-            <p class="text-lg font-medium text-gray-800">{{ user.profile.address }}</p>
+        <!-- Socials -->
+        <div><h4 class="label">Twitter</h4>
+            <a href="{{ user.profile.twitter }}" class="value text-blue-500 hover:underline" target="_blank">{{ user.profile.twitter }}</a>
         </div>
-
-        <div>
-            <h4 class="text-sm text-gray-500 uppercase mb-1">Gender</h4>
-            <p class="text-lg font-medium text-gray-800">{{ user.profile.gender }}</p>
+        <div><h4 class="label">LinkedIn</h4>
+            <a href="{{ user.profile.linkedin }}" class="value text-blue-500 hover:underline" target="_blank">{{ user.profile.linkedin }}</a>
         </div>
-
-        <div>
-            <h4 class="text-sm text-gray-500 uppercase mb-1">Date of Birth</h4>
-            <p class="text-lg font-medium text-gray-800">{{ user.profile.dob }}</p>
+        <div><h4 class="label">Facebook</h4>
+            <a href="{{ user.profile.facebook }}" class="value text-blue-500 hover:underline" target="_blank">{{ user.profile.facebook }}</a>
+        </div>
+        <div><h4 class="label">Instagram</h4>
+            <a href="{{ user.profile.instagram }}" class="value text-blue-500 hover:underline" target="_blank">{{ user.profile.instagram }}</a>
+        </div>
+        <div><h4 class="label">YouTube</h4>
+            <a href="{{ user.profile.youtube }}" class="value text-blue-500 hover:underline" target="_blank">{{ user.profile.youtube }}</a>
         </div>
     </div>
-
-    
 </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .label {
+        @apply text-sm text-gray-500 uppercase mb-1;
+    }
+    .value {
+        @apply text-lg font-medium text-gray-800;
+    }
+</style>
 {% endblock %}

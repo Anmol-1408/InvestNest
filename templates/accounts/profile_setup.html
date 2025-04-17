@@ -12,8 +12,20 @@
         <div class="space-y-6">
             <!-- Profile Picture -->
             <div>
-                <label for="id_profile_pic" class="block text-lg font-medium text-gray-700">Profile Picture</label>
-                <input type="file" name="profile_pic" id="id_profile_pic" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                <label for="id_profile_pic" class="block text-lg font-medium text-gray-700 mb-2">Profile Picture</label>
+            
+                <!-- Image Preview -->
+                <div class="flex items-center space-x-4 mb-4">
+                    <img id="previewImage" src="{% if user.profile.profile_pic %}{{ user.profile.profile_pic.url }}{% else %}https://placehold.co/100?='bhj'{% endif %}" alt={{ user.username|slice:":1"|upper }} class="w-24 h-24 object-cover rounded-full border shadow">
+                    <label for="id_profile_pic" class="cursor-pointer inline-flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-md shadow-sm hover:bg-blue-200 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M16.707 5.293a1 1 0 00-1.414 0L10 10.586 7.707 8.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l6-6a1 1 0 000-1.414z" />
+                        </svg>
+                        Choose Image
+                    </label>
+                </div>
+            
+                <input type="file" name="profile_pic" id="id_profile_pic" accept="image/*" class="hidden">
             </div>
 
             <!-- First Name -->
@@ -34,6 +46,7 @@
                 <textarea name="bio" id="id_bio" class="mt-1 block w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">{{ form.bio.value }}</textarea>
             </div>
 
+            
             <!-- Website -->
             <div>
                 <label for="id_website" class="block text-lg font-medium text-gray-700">Website</label>
@@ -116,6 +129,14 @@
                 </div>
             </div>
 
+            <!-- is investor -->
+            <div>
+                <label class="inline-flex items-center text-sm text-gray-700">
+                    {{ form.is_investor }}
+                    <span class="ml-2">Investor</span>
+                </label>
+            </div>
+
             <div class="text-center mt-6">
                 <button type="submit" class="text-white bg-blue-500 hover:bg-blue-700 py-2 px-6 rounded-full transition duration-300">Save</button>
             </div>
@@ -123,3 +144,33 @@
     </form>
 </div>
 {% endblock %}
+
+{% block extra_js %}
+<script>
+    console.log("Preview script loaded");
+
+    function previewImage(event) {
+        const input = event.target;
+        const preview = document.getElementById('previewImage');
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const fileInput = document.getElementById("id_profile_pic");
+        if (fileInput) {
+            fileInput.addEventListener("change", previewImage);
+        }
+    });
+</script>
+{% endblock %}
+
+
