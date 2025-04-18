@@ -27,28 +27,9 @@
 
         <!-- Product Header Section -->
         <div class="product-header p-6 bg-gradient-to-r from-blue-100 via-indigo-50 to-blue-100 rounded-t-lg">
-            <!-- 3-dot menu using custom SVG -->
-            <div x-data="{ open: false }" class="absolute mt-6 ml-[63rem]">
-                <button @click.stop="open = !open" class="focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5" id="ellipsis-v">
-                        <path fill="#A3A3F8"
-                            d="M12,7a2,2,0,1,0-2-2A2,2,0,0,0,12,7Zm0,10a2,2,0,1,0,2,2A2,2,0,0,0,12,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z">
-                        </path>
-                    </svg>
-                </button>
-
-                <div x-show="open" @click.away="open = false" x-transition
-                    class="absolute right-3 top-10 z-10 w-36 bg-white border border-gray-200 shadow-lg rounded-md text-sm text-gray-700">
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">🚩 Report</a>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-100">📌 Save</a>
-                </div>
-            </div>
-
             <h2 class="text-4xl font-semibold text-gray-900 mb-4">{{ product.title }}</h2>
 
-
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
                 <!-- Small Product Icon as Logo -->
                 <div class="flex justify-center items-center">
                     <img src="{{ product.icon.url }}" alt="product icon"
@@ -58,31 +39,12 @@
                 <!-- Carousel for Product Images -->
                 <div class="relative">
                     <div class="carousel-container">
-
                         {% if product.screenshot %}
                         <div class="carousel-item">
                             <img src="{{ product.screenshot.url }}" alt="product screenshot"
                                 class="w-full h-72 object-cover rounded-xl shadow-lg">
                         </div>
                         {% endif %}
-                    </div>
-
-                    <!-- Carousel Navigation (for large screen) -->
-                    <div class="absolute top-1/2 left-0 transform -translate-y-1/2 px-4">
-                        <button class="text-white bg-black opacity-60 hover:opacity-100 rounded-full p-2">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M15 19l-7-7 7-7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="absolute top-1/2 right-0 transform -translate-y-1/2 px-4">
-                        <button class="text-white bg-black opacity-60 hover:opacity-100 rounded-full p-2">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -91,7 +53,6 @@
         <!-- Tags -->
         <div class="p-6 bg-white">
             <div class="flex flex-wrap gap-2 mt-2">
-
                 {% if product.tags %}
                 {% for tag in product.tag_list %}
                 <a href="#" title="Tag: {{ tag }}"
@@ -102,8 +63,6 @@
                 {% else %}
                 <p class="text-gray-500 text-sm">No tags available.</p>
                 {% endif %}
-
-
             </div>
         </div>
 
@@ -121,6 +80,7 @@
                     <strong class="text-lg text-gray-700">Summary:</strong>
                     <p class="text-gray-700 text-lg mt-2">{{ product.description }}</p>
                 </div>
+
                 <!-- Features -->
                 <div>
                     <strong class="text-lg text-gray-700">Features:</strong>
@@ -135,6 +95,17 @@
                     {% endif %}
                 </div>
 
+                <!-- Progress Tracking -->
+                <div class="progress-tracking mt-4">
+                    <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
+                        <div class="bg-indigo-600 h-4 rounded-full" style="width: {{ funding_percentage }}%"></div>
+                    </div>
+
+                    <div class="flex justify-between text-sm text-gray-700">
+                        <span>${{ product.funding }} / ${{ product.goal }}</span>
+                        <span>{{ funding_percentage|floatformat:2 }}% Funded</span>
+                    </div>
+                </div>
                 <!-- Upvotes -->
                 <div>
                     <strong class="text-lg text-gray-700">Upvotes:</strong>
@@ -165,8 +136,6 @@
                     <p class="text-gray-700">{{ product.created_at }}</p>
                 </div>
 
-
-
                 <!-- Category -->
                 <div>
                     <strong class="text-lg text-gray-700">Category:</strong>
@@ -179,13 +148,25 @@
                     <p class="text-gray-700">{{ product.is_published|yesno:"Yes,No" }}</p>
                 </div>
 
-                {% comment %} <!-- Featured Status -->
-                <div>
-                    <strong class="text-lg text-gray-700">Featured:</strong>
-                    <p class="text-gray-700">{{ product.is_featured|yesno:"Yes,No" }}</p>
-                </div> {% endcomment %}
             </div>
         </div>
+
+        <!-- Invest Button -->
+        {% if request.user.is_authenticated %}
+        <div class="p-6 bg-white">
+            <a href="{% url 'invest_create' %}?product={{ product.pk }}"
+                class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-700 transition">
+                Invest in this Product
+            </a>
+        </div>
+        {% else %}
+        <div class="p-6 bg-white">
+            <a href="{% url 'login' %}"
+                class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-700 transition">
+                Login to Invest
+            </a>
+        </div>
+        {% endif %}
     </div>
 </div>
 
