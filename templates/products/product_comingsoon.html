@@ -11,6 +11,29 @@
             <p class="mt-2 text-lg text-gray-600">Exciting things are on the way.</p>
         </div>
 
+        {% comment %} tags {% endcomment %}
+        <div class="mt-2">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">🔥 Popular Catagory</h3>
+            <div class="flex flex-wrap gap-2">
+                {% for tag, count in popular_tags %}
+                <a href="?q={{ tag }}"
+                    class="px-3 py-1 bg-gray-300 text-sm text-gray-700 rounded-full hover:bg-indigo-100 hover:text-indigo-700 transition">
+                    {{ tag }} <span class="text-gray-500 text-xs">({{ count }})</span>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% comment %} Advanced Search {% endcomment %}
+        <details>
+            <summary class="cursor-pointer text-indigo-600 font-semibold text-sm mb-2">⚙️ Advanced Search</summary>
+            <form method="get" action="" class="mt-4">
+                <input type="search" name="q" placeholder="Search by Catagories (e.g. tech, ai, finance)"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    value="{{ request.GET.q }}">
+            </form>
+        </details>
+
+
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
             <!-- Product Card -->
@@ -19,7 +42,8 @@
                     <h2 class="text-2xl font-semibold text-gray-800">Upcoming Products</h2>
 
                     {% if request.user.is_authenticated %}
-                    <a href="{% url 'product_create' %}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-700 transition">
+                    <a href="{% url 'product_create' %}"
+                        class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded hover:bg-indigo-700 transition">
                         <span class="text-xl mr-2">+</span> New Product
                     </a>
                     {% endif %}
@@ -30,18 +54,22 @@
                     {% for product in products %}
                     {% if not product.is_published %}
                     <a href="{% url 'product' product.pk %}" class="block relative">
-                    <div class="flex items-start gap-4 bg-gray-50 p-4 rounded border border-gray-200 hover:shadow transition">
-                        <img src="{{ product.icon.url }}" alt="{{ product.title }}" class="w-16 h-16 object-cover rounded-md">
-                        <div class="flex-1">
-                            <h3 class="text-lg font-semibold text-gray-800">{{ product.title }}</h3>
-                            <p class="text-sm text-gray-600">{{ product.summary }}</p>
-                            {% if product.is_featured %}
-                            <span class="inline-block mt-2 px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">🌟 Featured</span>
-                            {% endif %}
+                        <div
+                            class="flex items-start gap-4 bg-gray-50 p-4 rounded border border-gray-200 hover:shadow transition">
+                            <img src="{{ product.icon.url }}" alt="{{ product.title }}"
+                                class="w-16 h-16 object-cover rounded-md">
+                            <div class="flex-1">
+                                <h3 class="text-lg font-semibold text-gray-800">{{ product.title }}</h3>
+                                <p class="text-sm text-gray-600">{{ product.summary }}</p>
+                                {% if product.is_featured %}
+                                <span
+                                    class="inline-block mt-2 px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">🌟
+                                    Featured</span>
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
                     </a>
-                    
+
                     {% endif %}
                     {% endfor %}
                 </div>
@@ -60,7 +88,8 @@
                     </div>
                     <div class="border-l-4 border-indigo-500 pl-4">
                         <h3 class="text-lg font-semibold text-gray-700">Marketing Strategies for Startups</h3>
-                        <p class="text-sm text-gray-600">Explore the best marketing strategies for early-stage startups.</p>
+                        <p class="text-sm text-gray-600">Explore the best marketing strategies for early-stage startups.
+                        </p>
                     </div>
                     <div class="border-l-4 border-indigo-500 pl-4">
                         <h3 class="text-lg font-semibold text-gray-700">Product Hunt Success Stories</h3>

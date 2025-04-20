@@ -7,6 +7,10 @@ from .models import Product, CommunityDiscussion, CommunityReply, Event
 from .forms import ProductForm, InvestmentForm, CommunityDiscussionForm, CommunityReplyForm, EventForm
 from django.conf import settings
 from .utils import get_zoom_access_token, create_zoom_meeting
+from django.db.models import Q
+from collections import Counter
+from itertools import chain
+
 
 # Landing Page
 def landing(request):
@@ -14,14 +18,22 @@ def landing(request):
         return redirect('explore')
     return render(request, 'products/landing.html')
 
-# Explore Products
 def explore(request):
-    category = request.GET.get('category')
+    query = request.GET.get('q', '')
+
+    selected_tags = [tag.strip().lower() for tag in query.split(',') if tag.strip()]
     products = Product.objects.filter(is_published=True)
-    if category:
-        products = products.filter(category=category)
+
+    if selected_tags:
+        q_objects = Q()
+        for tag in selected_tags:
+            q_objects |= Q(tags__icontains=tag)
+        products = products.filter(q_objects)
+
     products = products.order_by('-pub_date')
-    
+
+
+    # Insert featured products in between
     featured_products = Product.objects.filter(is_featured=True, is_published=True).order_by('-pub_date')
     combined_products = []
     regular_count = 0
@@ -34,7 +46,18 @@ def explore(request):
             combined_products.append(featured_products[featured_index])
             featured_index += 1
 
-    return render(request, 'products/explore.html', {'products': combined_products})
+    # 🔥 Get all tags from published products
+    all_tags = list(chain.from_iterable([p.tag_list() for p in Product.objects.filter(is_published=True)]))
+    tag_counts = Counter(all_tags)
+    popular_tags = tag_counts.most_common(10)
+
+    return render(request, 'products/explore.html', {
+        'products': combined_products,
+        'query': query,
+        'popular_tags': popular_tags,
+        'selected_tags': selected_tags,
+        'featured_products': featured_products,
+    })
 
 # Fetch More Featured Products
 @login_required
@@ -95,8 +118,27 @@ def product_delete(request, pk):
 
 # Coming Soon Page
 def comingsoon(request):
-    products = Product.objects.all()
-    return render(request, 'products/product_comingsoon.html', {'products': products})
+    query = request.GET.get('q')
+
+    # Start with published products
+    products = Product.objects.filter(is_published=False)
+
+    # Filter by tags if search query exists
+    if query:
+        tag_list = [tag.strip().lower() for tag in query.split(',')]
+        q_objects = Q()
+        for tag in tag_list:
+            q_objects |= Q(tags__icontains=tag)
+        products = products.filter(q_objects)
+
+    products = products.order_by('-pub_date')
+    # 🔥 Get all tags from published products
+    all_tags = list(chain.from_iterable([p.tag_list() for p in Product.objects.filter(is_published=True)]))
+    tag_counts = Counter(all_tags)
+    popular_tags = tag_counts.most_common(10)
+    return render(request, 'products/product_comingsoon.html', {'products': products,
+        'query': query,
+        'popular_tags': popular_tags,})
 
 # Investment Creation
 @login_required
