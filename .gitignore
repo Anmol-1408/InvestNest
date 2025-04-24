@@ -176,6 +176,14 @@ cython_debug/
 .pypirc
 
 
+static/
+staticfiles/
+staticfiles-*
+staticfiles-**
+static-*
+static-**
+staticfiles.json
+staticfiles.jsonl
 
 
 
