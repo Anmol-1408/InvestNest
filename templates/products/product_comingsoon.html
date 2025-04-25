@@ -17,7 +17,7 @@
             <div class="flex flex-wrap gap-2">
                 {% for tag, count in popular_tags %}
                 <a href="?q={{ tag }}"
-                    class="px-3 py-1 bg-gray-300 text-sm text-gray-700 rounded-full hover:bg-indigo-100 hover:text-indigo-700 transition">
+                    class="px-3 py-1 bg-gray-300 text-sm text-gray-700 rounded-full hover:bg-royal-blue-100 hover:text-royal-blue-700 transition">
                     {{ tag }} <span class="text-gray-500 text-xs">({{ count }})</span>
                 </a>
                 {% endfor %}
@@ -25,10 +25,10 @@
         </div>
         {% comment %} Advanced Search {% endcomment %}
         <details>
-            <summary class="cursor-pointer text-indigo-600 font-semibold text-sm mb-2">⚙️ Advanced Search</summary>
+            <summary class="cursor-pointer text-royal-blue-600 font-semibold text-sm mb-2">⚙️ Advanced Search</summary>
             <form method="get" action="" class="mt-4">
                 <input type="search" name="q" placeholder="Search by Catagories (e.g. tech, ai, finance)"
-                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-royal-blue-500"
                     value="{{ request.GET.q }}">
             </form>
         </details>
@@ -82,16 +82,16 @@
             <div class="bg-white shadow-lg rounded-lg p-6">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">Latest Blogs</h2>
                 <div class="space-y-4">
-                    <div class="border-l-4 border-indigo-500 pl-4">
+                    <div class="border-l-4 border-royal-blue-500 pl-4">
                         <h3 class="text-lg font-semibold text-gray-700">How to Launch a Product</h3>
                         <p class="text-sm text-gray-600">A complete guide to launching your product.</p>
                     </div>
-                    <div class="border-l-4 border-indigo-500 pl-4">
+                    <div class="border-l-4 border-royal-blue-500 pl-4">
                         <h3 class="text-lg font-semibold text-gray-700">Marketing Strategies for Startups</h3>
                         <p class="text-sm text-gray-600">Explore the best marketing strategies for early-stage startups.
                         </p>
                     </div>
-                    <div class="border-l-4 border-indigo-500 pl-4">
+                    <div class="border-l-4 border-royal-blue-500 pl-4">
                         <h3 class="text-lg font-semibold text-gray-700">Product Hunt Success Stories</h3>
                         <p class="text-sm text-gray-600">Read success stories of startups featured on Product Hunt.</p>
                     </div>
